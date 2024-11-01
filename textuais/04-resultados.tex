@@ -1,0 +1,70 @@
+\section{Resultados}
+
+\begin{frame}{Resultados do Desenvolvimento do \textit{Front-end}}
+    \begin{itemize}
+        \item Interface desenvolvida para facilitar a interação com a ferramenta de modelagem.
+        \item Menu permite controle das ações, sidebar exibe informações de reconciliação e o \textit{canvas} possibilita manipulação de nódulos.
+        \item Exemplo da interface no \textit{canvas} com nódulos conectados visualmente.
+    \end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.4\textwidth]{figuras/empty-canvas.png}
+        \caption{Exemplo da área de trabalho no \textit{canvas} do RADARE}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Botões de Controle no Menu}
+    \begin{itemize}
+        \item Botões de Adicionar Input/Output e nódulos intermediários para criar fluxos de dados.
+        \item Opção de Reconciliar Dados e Exibir/Ocultar Gráficos e Sidebar.
+        \item Flexibilidade no gerenciamento e análise de grandes volumes de dados industriais.
+    \end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.4\textwidth]{figuras/menu-image.png}
+        \caption{Menu principal do sistema RADARE}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Resultados do Desenvolvimento do \textit{Back-end}}
+    \begin{itemize}
+        \item \textit{Back-end} desenvolvido em Python com Flask, gerencia requisições e realiza cálculos de reconciliação.
+        \item Rota \texttt{POST /reconcile-data} processa dados usando o método dos multiplicadores de Lagrange.
+        \item Rota \texttt{GET /health} verifica a qualidade da conexão entre \textit{front-end} e \textit{back-end}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados do Desenvolvimento do Banco de Dados}
+    \begin{itemize}
+        \item Banco de dados em PostgreSQL para armazenar dados de medições e reconciliações.
+        \item Tabela organiza informações de processos industriais, incluindo medições, resultados reconciliados e correções.
+        \item Garantia de integridade e eficiência nas consultas e operações.
+    \end{itemize}
+    \begin{table}[htbp!]
+        \centering
+        \begin{tabular}{|l|p{6cm}|}
+            \hline
+            \textbf{Coluna} & \textbf{Descrição} \\ \hline
+            \textbf{id} & Identificação única do registro. \\ \hline
+            \textbf{user} & Usuário responsável pela reconciliação. \\ \hline
+            \textbf{time} & Registro do horário da reconciliação. \\ \hline
+            \textbf{tagname} & Variáveis medidas (sensores). \\ \hline
+            \textbf{tagreconciled} & Valores reconciliados. \\ \hline
+            \textbf{tagcorrection} & Correções aplicadas. \\ \hline
+            \textbf{tagmatrix} & Matriz de incidência usada. \\ \hline
+        \end{tabular}
+        \caption{Estrutura da tabela de dados de processos industriais}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Gráfico de Reconciliação de Dados}
+    \begin{itemize}
+        \item Interface gráfica permite comparação entre valores medidos e reconciliados.
+        \item Facilita identificação de discrepâncias e avaliação da precisão dos dados reconciliados.
+    \end{itemize}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{figuras/interface-grafico.png}
+        \caption{Exemplo de gráfico de reconciliações por interação}
+    \end{figure}
+\end{frame}

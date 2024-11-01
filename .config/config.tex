@@ -1,0 +1,108 @@
+% ===============================
+% Pacotes Gerais
+% ===============================
+\usepackage[utf8]{inputenc} % Codificação de caracteres UTF-8
+\usepackage{comment}        % Permite criar blocos de comentários no documento
+\usepackage{biblatex}       % Gerenciamento de referências bibliográficas
+\usepackage{textcomp}       % Suporte para símbolos adicionais de texto
+\usepackage{pgf}            % Pacote para criação de gráficos em TikZ
+\usepackage{courier}        % Fonte Courier para textos monoespaçados
+\usepackage{expl3}          % Sintaxe LaTeX3 para criação de macros avançadas
+\usepackage{threeparttable} % Suporte para notas de rodapé em tabelas
+\usepackage{cancel}         % Suporte para cancelamento de termos em fórmulas
+\usepackage{parskip}        % Controle de espaçamento entre parágrafos
+\usepackage{empheq}         % Emolduramento de equações com opções de destaque
+\usepackage{tikzsymbols}    % Pacote para inclusão de símbolos em TikZ
+
+% ===============================
+% Tema e Layout do Beamer
+% ===============================
+\usetheme{Madrid} % Define o tema Madrid para a apresentação
+
+% Desativa os símbolos de navegação
+\setbeamertemplate{navigation symbols}{}
+
+% Configura o rodapé para exibir o número do slide
+\setbeamertemplate{footline}[frame number]
+
+% Configura a exibição do número da página no rodapé
+\setbeamertemplate{page number in head/foot}[framenumber]
+
+% Configuração do cabeçalho com separadores e navegação por seção
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}{section in head/foot}
+      \vskip2pt\hfill\insertsectionnavigationhorizontal{\paperwidth}{}{}\vskip2pt
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+% ===============================
+% Definições de Cores Personalizadas
+% ===============================
+\definecolor{cvut_navy}{HTML}{0065BD}    % Azul escuro personalizado
+\definecolor{cvut_blue}{HTML}{6AADE4}    % Azul claro personalizado
+\definecolor{cvut_gray}{HTML}{156570}    % Cinza azulado personalizado
+\definecolor{faeng_blue}{HTML}{09246F}   % Azul da FAENG
+\definecolor{darkblue}{rgb}{0, 0, 0.5}   % Azul escuro genérico
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94} % Azul bebê
+\definecolor{lightgreen}{HTML}{90EE90}   % Verde claro
+% \sethlcolor{lightblue} % Define a cor de fundo para o comando \hl (destacado)
+
+% ===============================
+% Configurações de Cores para Elementos do Beamer
+% ===============================
+\setbeamercolor{section in toc}{fg=black, bg=yellow} % Cor de fundo e texto para as seções no sumário
+\setbeamercolor{alerted text}{fg=cvut_blue}          % Cor do texto de alerta
+
+% ===============================
+% Comandos Personalizados
+% ===============================
+
+% Redefine o nome padrão para "Figura"
+\renewcommand{\figurename}{Figura}
+
+% Comando para criar uma caixa de destaque em torno de equações
+\newcommand{\boxedeq}[2]{%
+  \begin{empheq}[box={\fboxsep=6pt\fbox}]{align}
+    \label{#1}#2
+  \end{empheq}
+}
+
+% Comando para criar uma caixa colorida em torno de equações
+\newcommand{\coloredeq}[2]{%
+  \begin{empheq}[box=\colorbox{lightgreen}]{align}
+    \label{#1}#2
+  \end{empheq}
+}
+
+% Comando para destacar uma expressão matemática com fundo colorido
+\newcommand{\highlight}[1]{%
+  \colorbox{red!40}{$\displaystyle#1$}
+}
+
+% Comando para destacar texto com o comando \hl
+\renewcommand<>{\hl}[1]{\only#2{\beameroriginal{\hl}}{#1}}
+
+% Comando para criar um buffer de rolagem para códigos longos
+\newcommand\scroll[4][§§]{%
+  \seq_set_split:Nnn\g_inputline_seq{#1}{#4}
+  \seq_map_inline:Nn\g_inputline_seq{
+    \seq_gput_right:Nx\g_linebuffer_seq{##1}
+    \int_compare:nT{\seq_count:N\g_linebuffer_seq>#3}{
+      \seq_gpop_left:NN\g_linebuffer_seq\dummy
+    }
+  }
+  \fbox{\begin{minipage}[t][#3\baselineskip]{#2}
+    \ttfamily
+    \seq_map_inline:Nn\g_linebuffer_seq{\mbox{##1}\\}
+  \end{minipage}}
+}
+
+% Comando para limpar o buffer do scroll
+\newcommand\clearbuf{\seq_gclear:N\g_linebuffer_seq}
+
+% Desativa o modo de sintaxe LaTeX3
+\ExplSyntaxOff

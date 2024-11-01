@@ -1,0 +1,30 @@
+% Importa o arquivo de configurações
+\documentclass{beamer}
+\input{.config/config}
+\input{Info} % Importa o arquivo de informações
+
+% Inicio do Documento
+\begin{document}
+
+% Slide de capa
+\begin{frame}[plain]
+	\titlepage
+	\begin{center}
+  		\includegraphics[height=1.5cm]{figuras/faeng.png}
+	\end{center}
+\end{frame}
+
+% Slide de sumário
+\begin{frame}{Sumário}
+    \tableofcontents
+\end{frame}
+
+% Inclusão dos capítulos principais
+\input{textuais/01-introducao}
+\input{textuais/02-refteorico}
+\input{textuais/03-metodologia}
+\input{textuais/04-resultados}
+\input{textuais/05-conclusao}
+
+% Fim do Documento
+\end{document}
